@@ -1,0 +1,17 @@
+{
+    "Year": [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+    "Track": ["70thAnniversary", "AbuDhabi", "Australian", "Azerbaijan", "Bahrain", "Belgian", "Brazilian", "Britis"
+            , "British", "Canadian", "Chinese", "Dutch", "Eifel", "EmiliaRomagna", "French", "German", "Hungarian", "Italia"
+            , "Italian", "Japanese", "LasVegas", "Mexican", "MexicoCity", "Miami", "Monaco", "Portuguese", "Qatar", "Russian"
+            , "Sakhir", "SãoPaulo", "SaudiArabian", "Singapore", "Spanish", "Styrian", "Turkish", "Tuscan", "UnitedStates"],
+    "Session": ["FP1", "FP2", "FP3", "Q", "R", "SQ"],
+    "Team": [  "GAS", "KUB", "OSU", "ILO", "KVY", "BRO", "FCO", "TSU", "OWA", "DOO",
+            "MON", "GEL", "POU", "PER", "HAM", "BOR", "LAW", "GIO", "HIR", "LEL",
+            "GRO", "BEG", "ZHO", "HAD", "SAI", "YAM", "ERI", "SIR", "MAR", "MSC",
+            "RAI", "SHI", "COH", "FIT", "PAL", "LAT", "BEA", "ANT", "TBA", "HUL",
+            "VIL", "OCO", "BOY", "FOR", "BOT", "DEN", "VES", "NIS", "VAN", "DEV",
+            "VIP", "ARO", "NOR", "RUS", "MAZ", "RIC", "VER", "HAR", "AIT", "ALB",
+            "MAN", "ALO", "MAG", "DRU", "SHW", "GRA", "SAR", "PIA", "IWA", "LEC",
+            "VET", "STR", "COL"]
+    
+}

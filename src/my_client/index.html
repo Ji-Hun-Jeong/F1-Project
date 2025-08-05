@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const randomSocket = new WebSocket(
+        "ws://localhost:8096/get_random_format"
+      );
+      const checkSocket = new WebSocket("ws://localhost:8096/check_file");
+      const carDataSocket = new WebSocket(
+        "ws://localhost:8096/request_data_sequential"
+      );
+      const lapsDataSocket = new WebSocket(
+        "ws://localhost:8096/request_data_sequential"
+      );
+      const positionDataSocket = new WebSocket(
+        "ws://localhost:8096/request_data_sequential"
+      );
+      const weatherDataSocket = new WebSocket(
+        "ws://localhost:8096/request_data_sequential"
+      );
+      const onceDataSocket = new WebSocket(
+        "ws://localhost:8096/request_data_once"
+      );
+
+      presentOnScreen = (event) => {
+        const body = document.getElementsByTagName("body")[0];
+        const message = document.createElement("p");
+
+        try {
+          const parsedData = JSON.parse(event.data); // JSON으로 파싱
+          //message.innerText = JSON.stringify(parsedData);
+          console.log(JSON.stringify(parsedData));
+        } catch (error) {
+          message.innerText = "서버 응답(JSON 아님): " + event.data;
+        }
+        body.appendChild(message);
+      };
+      carDataSocket.onmessage = presentOnScreen;
+      lapsDataSocket.onmessage = presentOnScreen;
+      positionDataSocket.onmessage = presentOnScreen;
+      weatherDataSocket.onmessage = presentOnScreen;
+      onceDataSocket.onmessage = presentOnScreen;
+      randomSocket.onopen = (event) => {
+        randomSocket.send("");
+      };
+      randomSocket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        onceDataSocket.onopen = (event) => {
+          const jsonData = JSON.stringify({
+            Year: data.Year,
+            Track: data.Track,
+            Session: data.Session,
+            Team: data.Team,
+            FileName: "laps.csv",
+          });
+          onceDataSocket.send(jsonData);
+        };
+      };
+      //   randomSocket.onmessage = (event) => {
+      //     try {
+      //       const data = JSON.parse(event.data); // JSON 문자열을 객체로 변환
+      //       carDataSocket.onopen = (event) => {
+      //         const jsonData = JSON.stringify({
+      //           Year: data.Year,
+      //           Track: data.Track,
+      //           Session: data.Session,
+      //           Team: data.Team,
+      //           ReactionTime: 1.5,
+      //           FileName: "car_data_all.csv",
+      //         });
+      //         carDataSocket.send(jsonData);
+      //       };
+      //       lapsDataSocket.onopen = (event) => {
+      //         const jsonData = JSON.stringify({
+      //           Year: data.Year,
+      //           Track: data.Track,
+      //           Session: data.Session,
+      //           Team: data.Team,
+      //           ReactionTime: 3.0,
+      //           FileName: "laps.csv",
+      //         });
+      //         lapsDataSocket.send(jsonData);
+      //       };
+      //       positionDataSocket.onopen = (event) => {
+      //         const jsonData = JSON.stringify({
+      //           Year: data.Year,
+      //           Track: data.Track,
+      //           Session: data.Session,
+      //           Team: data.Team,
+      //           ReactionTime: 3.0,
+      //           FileName: "position_data.csv",
+      //         });
+      //         positionDataSocket.send(jsonData);
+      //       };
+      //       weatherDataSocket.onopen = (event) => {
+      //         const jsonData = JSON.stringify({
+      //           Year: data.Year,
+      //           Track: data.Track,
+      //           Session: data.Session,
+      //           Team: data.Team,
+      //           ReactionTime: 5.0,
+      //           FileName: "weather_data.csv",
+      //         });
+      //         weatherDataSocket.send(jsonData);
+      //       };
+      //     } catch (err) {
+      //       alert("JSON 파싱 실패:", event.data);
+      //     }
+      //   };
+    </script>
+  </head>
+  <body></body>
+</html>
